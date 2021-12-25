@@ -1,5 +1,11 @@
+'''
+    소수 만들기 문제
+    -> nums 리스트에서 3개의 숫자만을 조합하여 합한 것이 소수인 경우의 수를 구하기
+'''
+
 
     # TODO: 1번 풀이 ( itertools 라이브러리 사용 )
+    # 풀이시간 : 11분
 
 
 from  itertools import combinations
@@ -32,6 +38,7 @@ def solution_1(nums):
 print(solution_1(nums))
 
     # TODO: 2번 풀이 ( 라이브러리 미사용 )
+    # 풀이시간 : 15분
 
 nums = [1,2,3,4] # result 1
 nums = [1,2,7,6,4] # result 4
