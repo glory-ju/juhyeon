@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from konlpy.tag import Mecab
-import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument

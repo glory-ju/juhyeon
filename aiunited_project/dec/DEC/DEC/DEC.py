@@ -166,7 +166,7 @@ class DEC(object):
                                           self.model.get_layer(
                                               'encoder_%d' % (int(len(self.model.layers) / 2) - 1)).output)
                     features = feature_model.predict(self.x)
-                    km = KMeans(n_clusters=len(np.unique(self.y)), n_init=20, n_jobs=4)
+                    km = KMeans(n_clusters=len(np.unique(self.y)), n_init=20)
                     # km = KMeans(n_clusters=n_clusters, n_init=20)
                     y_pred = km.fit_predict(features)
                     # print()
@@ -204,7 +204,7 @@ class DEC(object):
             update_interval=140, save_dir='./results/temp'):
 
         print('Update interval', update_interval)
-        save_interval = int(x.shape[0] / batch_size) * 5  # 5 epochs
+        save_interval = (int(x.shape[0] / batch_size)+1) * 5  # 5 epochs
         print('Save interval', save_interval)
 
         # Step 1: initialize cluster centers using k-means
@@ -342,5 +342,6 @@ def dec(df, n_clusters, **param):
     print('clustering time: ', (time() - t0))
 
     df['cluster'] = y_pred
+    df.to_csv('dec_test.csv', index=False, encoding='UTF-8')
 
     return df

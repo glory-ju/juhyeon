@@ -7,16 +7,7 @@ from embedding.embedding_doc2vec import action_naver_review_tokenizing, \
 
 from dec.DEC.DEC.DEC import dec
 import pandas as pd
-import requests, datetime, json, time, math
-from soynlp.normalizer import *
-from hanspell import spell_checker
-from pykospacing import Spacing
 from konlpy.tag import Mecab
-import matplotlib.pyplot as plt
-import numpy as np
-from gensim.models.doc2vec import Doc2Vec, TaggedDocument
-from gensim.test.utils import get_tmpfile
-from sklearn.manifold import TSNE
 
 if __name__ == '__main__':
 
@@ -49,6 +40,8 @@ if __name__ == '__main__':
     tokenize_review.dropna(subset=['score'], inplace=True)
     tokenize_review.reset_index(drop=True, inplace=True)
     tokenized = action_naver_review_embedding(tokenize_review)
+    tokenize_review.to_csv('whatthe.csv', index=False, encoding='UTF-8')
+
 
     # learned model
     model = action_naver_review_modeling(tokenized)

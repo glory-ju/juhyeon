@@ -6,7 +6,7 @@ from gensim.models.doc2vec import Doc2Vec
 def get_features(model, words, size):
     feature_vector = np.zeros((size), dtype=np.float32)
     num_words = 0
-    word_set = set(model.wv.index2word)
+    word_set = set(model.wv.index_to_key)
 
     for w in words:
         if w in word_set:
@@ -113,11 +113,11 @@ def load_kobert(df):
     return x.astype(float), y
 
 
-def load_data(dataset_name, data, tokenized, **param):
+def load_data(dataset_name, df, tokenized, **param):
     if dataset_name == 'kobert':
-        return load_kobert(data)
+        return load_kobert(df)
     elif dataset_name == 'doc2vec':
-        return load_doc2vec(data, tokenized, **param)
+        return load_doc2vec(df, tokenized, **param)
     else:
         print('Not defined for loading', dataset_name)
         exit(0)
