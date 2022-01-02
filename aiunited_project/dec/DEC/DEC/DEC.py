@@ -288,7 +288,7 @@ def dec(df, n_clusters, **param):
     parser.add_argument('--ae_weights', default=None)
     parser.add_argument('--save_dir', default='results')
     args = parser.parse_args()
-    # print(args)
+    print(args)
 
     import os
     if not os.path.exists(args.save_dir):
@@ -296,7 +296,11 @@ def dec(df, n_clusters, **param):
 
     # load dataset
     from dec.DEC.DEC.datasets import load_data
-    x, y = load_data(args.dataset, df, **param)
+    from embedding.embedding_doc2vec import action_naver_review_embedding
+
+    tokenized = action_naver_review_embedding(df)
+    x, y = load_data(args.dataset, df, tokenized, **param)
+    n_clusters = len(np.unique(y))
 
     init = 'glorot_uniform'
     pretrain_optimizer = 'adam'

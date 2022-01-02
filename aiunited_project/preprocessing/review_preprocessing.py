@@ -8,6 +8,8 @@ def action_naver_review_preprocessing(df):
     preprocessing = []
     spacing = Spacing()
 
+    print('--------전처리 시작--------')
+
     for idx in range(len(df)):
         try:
             sent = df['review'][idx].strip().replace(' ','')
@@ -33,7 +35,5 @@ def action_naver_review_preprocessing(df):
     preprocessed = pd.DataFrame(preprocessing)
     df['preprocessed_review'] = preprocessed
     print(df['preprocessed_review'])
-
-    df.to_csv('sample_preprocessing.csv', encoding='utf-8', index=False)
 
     return df

@@ -54,4 +54,8 @@ if __name__ == '__main__':
     model = action_naver_review_modeling(tokenized)
 
     # dec
-    data = dec(tokenize_review, )
+    data = dec(df=tokenize_review, n_clusters=5, model_name = 'my_doc2vec_model', size=100)
+    print(data)
+
+    # kobert 모델 학습시킬 데이터 사전 추출
+    data = data[['score', 'cluster', 'review']]

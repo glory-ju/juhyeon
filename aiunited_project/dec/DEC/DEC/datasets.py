@@ -6,7 +6,7 @@ from gensim.models.doc2vec import Doc2Vec
 def get_features(model, words, size):
     feature_vector = np.zeros((size), dtype=np.float32)
     num_words = 0
-    word_set = set(model.wv.index_to_key)
+    word_set = set(model.wv.index2word)
 
     for w in words:
         if w in word_set:
@@ -28,11 +28,11 @@ def get_dataset2(model, reviews, size):
 
     return np.stack(dataset)
 
-def load_doc2vec(df, **param):
-    tokenized_review = df['tokenized']
-    model = Doc2Vec.load('weights/' + param['model_name'])
+def load_doc2vec(df, tokenized, **param):
+    tokenized_review = tokenized
+    model = Doc2Vec.load('./results/' + param['model_name'])
 
-    x = get_dataset2(model, list(tokenized_review), param['size'])
+    x = get_dataset2(model, tokenized_review, param['size'])
     y = df['score'].to_numpy()
 
     return x.astype(float), y
@@ -113,11 +113,11 @@ def load_kobert(df):
     return x.astype(float), y
 
 
-def load_data(dataset_name, data, **param):
+def load_data(dataset_name, data, tokenized, **param):
     if dataset_name == 'kobert':
         return load_kobert(data)
     elif dataset_name == 'doc2vec':
-        return load_doc2vec(data, **param)
+        return load_doc2vec(data, tokenized, **param)
     else:
         print('Not defined for loading', dataset_name)
         exit(0)
