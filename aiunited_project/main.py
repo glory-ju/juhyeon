@@ -12,7 +12,7 @@ from konlpy.tag import Mecab
 if __name__ == '__main__':
 
     # 최초 storeinfo csv 가져오기
-    df = pd.read_csv('C:/Users/140252/PycharmProjects/juhyeon/aiunited/data/storeInfo_1.csv')
+    df = pd.read_csv('/data/storeInfo_1.csv')
     crawler = Crawler()
 
     # naver get store_info
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     model = action_naver_review_modeling(tokenized)
 
     # dec
-    data = dec(df=tokenize_review, n_clusters=5, model_name = 'my_doc2vec_model', size=100)
+    data = dec(df=tokenize_review, n_clusters=5, model_name = 'my_doc2vec_model', size=256)
     print(data)
 
     # kobert 모델 학습시킬 데이터 사전 추출

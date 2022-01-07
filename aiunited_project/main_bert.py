@@ -18,7 +18,7 @@ from transformers.optimization import get_cosine_schedule_with_warmup
 
 bertmodel, vocab = get_pytorch_kobert_model()
 
-DATA = pd.read_csv('C:/Users/140252/PycharmProjects/juhyeon/aiunited_project/dec_test.csv')
+DATA = pd.read_csv('dec_test.csv')
 
 DATA = DATA.dropna()
 
@@ -125,8 +125,6 @@ def calc_accuracy(X, Y):
     train_acc = (max_indices == Y).sum().data.cpu().numpy() / max_indices.size()[0]
     return train_acc
 
-
-train_dataloader
 
 for e in range(num_epochs):
     train_acc = 0.0
