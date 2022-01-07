@@ -18,21 +18,21 @@ def action_naver_review_crawler(df):
         time.sleep(np.random.randint(0, 3))
 
         headers = {
-            'authority': 'pcmap-api.place.naver.com',
-            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
-            'accept': '*/*',
-            'content-type': 'application/json',
-            'accept-language': 'ko',
-            'sec-ch-ua-mobile': '?0',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
-            'sec-ch-ua-platform': '"Windows"',
-            'origin': 'https://pcmap.place.naver.com',
-            'sec-fetch-site': 'same-site',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://pcmap.place.naver.com/restaurant/11718339/home?from=map&fromPanelNum=1&ts=1641010943822',
-            'cookie': 'NNB=P52ZOJCX3GZGC; nx_ssl=2; nid_inf=19877329; NID_AUT=oQd6mkpDrJs1vkdeycVkS5391jnY0PYll0aYYoBV3gkIN7++K31ixOSTvYkXlAHZ; NID_JKL=evk+1JoX3dwNkQ6VMKWC5Pq3IhlOSyzWRtMt5hjHSYI=; page_uid=hNxS+wp0YiRssetr/MosssssthN-505931; BMR=; NID_SES=AAABpDeB8GpvfhtyNPf2CuNiBMkTSD09JBLwnEaUZAZEvNess8go1hgtce5vEzthDyDB/4OvhvbpXxbxbpmUlkcCWs3E3L8cO5Yd6WjARPJVzswrj0JUwnsqU8bGJgAirsGwY2OeBJ9Lp5BJbm0yLoCgj5T7RgzW5tkqVEg4gkeLJlNIlqcenpgJBvyF3HtQlMBa5kDvun+qArWmsHYyQiz4qMjfPPE6Tvgbju6eRcNwJdMyOXt94aBhGXRRlPiI3nm2FmT7UPa9kmYy8SjO/dj+mPaQKuqKUTh+KYR/pVL3TWOz/hFTpJrHky4OfmMJRLguBUrpWSdeQ5LR+pgWcMLu71LZhoUtct2NwO2uXmXUOVJX4UR3I9x8JZ8SzZi3z9bz3K1HqH3jErLB+vyys07TNc8fQiB9SSkkam5qY/vUnVejql99vURktEOTH1bco+BYSVVNhuijE+A7upXVAeQ9MWlJjD1m3fKpwPkK8Y7+Nw5Atp5k02Gqiv3OiaaB+xMQOoSTO0Eh++5YxjxJOHnK/jGpKwfP+zJSxJNJ2snEZM5baiAFjNjHyRR+puvgW/JNlQ==',
-        }
+                'authority': 'pcmap-api.place.naver.com',
+                'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+                'accept': '*/*',
+                'content-type': 'application/json',
+                'accept-language': 'ko',
+                'sec-ch-ua-mobile': '?0',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
+                'sec-ch-ua-platform': '"Windows"',
+                'origin': 'https://pcmap.place.naver.com',
+                'sec-fetch-site': 'same-site',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-dest': 'empty',
+                'referer': 'https://pcmap.place.naver.com/restaurant/11718339/review/visitor',
+                'cookie': 'NNB=P52ZOJCX3GZGC; nx_ssl=2; nid_inf=19877329; NID_AUT=oQd6mkpDrJs1vkdeycVkS5391jnY0PYll0aYYoBV3gkIN7++K31ixOSTvYkXlAHZ; NID_JKL=evk+1JoX3dwNkQ6VMKWC5Pq3IhlOSyzWRtMt5hjHSYI=; page_uid=hO71xdp0J1sssCPoGSRssssssKK-085086; BMR=s=1641402554641&r=https%3A%2F%2Fm.blog.naver.com%2FPostView.naver%3FisHttpsRedirect%3Dtrue%26blogId%3Dlovejhs96%26logNo%3D220447981320&r2=https%3A%2F%2Fwww.google.com%2F; NID_SES=AAABp1aqxXd0QM8Sdl55MC/eNDbEPmUzJtLrlhoKkhjn26qBiMOmFGtth2XNR3llkA2YeXgWw2c38QXzsFtW9IhQDgX3sx3827HACACDO4F3wTMYxafrMwvapARhcErPtki/Hje/YZKtv/UGK44s2cJ7qjdIcTo2MGT35EQaCbUpmUj42FzkiTn9FblJ/3AEx0HLXA/qd6AOLQtxFMUHH00ewt5cNh9wPtPz/3q4LUzyNXsnz46VmkF6R5kG+mmbu4fTl7zBHhjMmvDyuFgu2pwlRQJGuRy6fZgfSJgRKYy+G7G9Rp6m/gOIoB9iyxyOPbwhCG7cIhcA6uUEx5YpZTWCTiDHfgjiIIaNL5jimJxA+ezAwfoSHyvr8jn+0EBOwBw4yg7fkpv/RMjxmabyTgjAnGNYU6+Val0sEZls0UuBPdcmWy+jBuWh1l1Qus5Nd7zZnNxiuK5boH94jPLhvJhYsQxIEQidd+AkJCRbWcFpgJViyiwwwCk12QEjpVZ3tXAjYXL3HtdH/ED1RTQvKRDsQR5yHOlJYZIWlBtBxg9We3dpC8r01FyekFBCNP0X9Jcunw==',
+}
 
         nan_value = float(df['n_link'][idx])
 

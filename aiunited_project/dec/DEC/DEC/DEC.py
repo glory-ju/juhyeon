@@ -146,7 +146,7 @@ class DEC(object):
         clustering_layer = ClusteringLayer(self.n_clusters, name='clustering')(self.encoder.output)
         self.model = Model(inputs=self.encoder.input, outputs=clustering_layer)
 
-    def pretrain(self, x, y=None, optimizer='adam', epochs=200, batch_size=256, save_dir='results/temp', n_clusters=0):
+    def pretrain(self, x, y=None, optimizer='adam', epochs=200, batch_size=256, save_dir='./results/temp', n_clusters=0):
         print('...Pretraining...')
         self.autoencoder.compile(optimizer=optimizer, loss='mse')
 
@@ -204,7 +204,7 @@ class DEC(object):
             update_interval=140, save_dir='./results/temp'):
 
         print('Update interval', update_interval)
-        save_interval = (int(x.shape[0] / batch_size)+1) * 5  # 5 epochs
+        save_interval = (x.shape[0] / batch_size) * 5  # 5 epochs
         print('Save interval', save_interval)
 
         # Step 1: initialize cluster centers using k-means
@@ -312,8 +312,8 @@ def dec(df, n_clusters, **param):
                                distribution='uniform')  # [-limit, limit], limit=sqrt(1./fan_in)
         pretrain_optimizer = SGD(lr=1, momentum=0.9)
     elif args.dataset == 'doc2vec':
-        update_interval = 50
-        pretrain_epochs = 50
+        update_interval = 30
+        pretrain_epochs = 30
         init = VarianceScaling(scale=1. / 3., mode='fan_in',
                                distribution='uniform')  # [-limit, limit], limit=sqrt(1./fan_in)
         pretrain_optimizer = SGD(lr=1, momentum=0.9)

@@ -25,7 +25,7 @@ class Crawler:
         n_link = info_idx['id']
         website = info_idx['homePage']
 
-        data_frame.append([i+22543, df['store_addr'][i][:2], store, store_x, store_y, store_addr, store_addr_new, store_tel, open_hours, n_link, website])
+        data_frame.append([int(i+22543), df['store_addr'][i][:2], store, store_x, store_y, store_addr, store_addr_new, store_tel, open_hours, n_link, website])
         dataset = pd.DataFrame(data_frame, columns=['store_id', 'region', 'store_name', 'store_x', 'store_y', 'store_addr', 'store_addr_new', 'store_tel', 'open_hours', 'n_link', 'website'])
         print(store)
 
@@ -38,7 +38,7 @@ class Crawler:
             json.load를 계속 호출하다 보면 api 사용을 막아버림.
             time sleep을 랜덤으로 설정해주면 오래걸리지만 막히지 않음.
         '''
-        for i in tqdm(range(1,6)):
+        for i in tqdm(range(1200,1220)):
             time.sleep(np.random.randint(0, 3))
 
             '''
@@ -54,9 +54,23 @@ class Crawler:
             new_name = df['new_name'][i]
 
             headers = {
-                       'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36',
-                       'cookie': 'NNB=YYF7WTTONT7GA; NID_AUT=6XDDHNp+RcKAoZR4X6WEGoEfGvfj/yinwhkuRt1FzzhwIWk1O2ghLoG+HBCOEkOf; NID_JKL=CcQOovGLIQDJuVb+/+nCI5UhKmVJKR84vJlqN/fIt9o=; _ga=GA1.2.878040348.1627623526; ASID=dc5f3dbd0000017bc9a08e5f0000005a; NV_WETR_LOCATION_RGN_M="MDUyMDA2MjQ="; NV_WETR_LAST_ACCESS_RGN_M="MDUyMDA2MjQ="; m_loc=568796a9a798b031c79ce34c474a916b745a603ef49a3efae027330981851c165c45d208eb010b902a04b8027ba06bef; NFS=2; MM_NEW=1; BMR=s=1635143616649&r=https%3A%2F%2Fm.blog.naver.com%2FPostView.naver%3FisHttpsRedirect%3Dtrue%26blogId%3Dmck0903%26logNo%3D221442957432&r2=https%3A%2F%2Fwww.google.com%2F; page_uid=hUpiasp0JywssLOingosssssthC-510028; NID_SES=AAABpbD2qjHEUIH3pWB4k7ykWkstFCWkjxSXmzGoQA6z5h2HqI5xJKRYWq3L1In+Id8MLlQkomzzt4MoE26CuvOcQ4xaL12x6Xj6jbavekPWZhilepZfZkmlLJDpHI1mxWu3QJPFb4dltRh4ZuFMNpsy149f2enHKaQv5VxOwUaunoEz4A6/VHB8lAlR3US2J1bdWvnhx0YcjtTGPJwYad32ygfxSxNDwLI57+StZkeTh+hXyTQPDadd5fo7FS7g6RwHf3Xo999b8ub9F43Z9u0Ua+5D9+qxdvZReRVdNVRsR45CvAG/poMR2XAw0bj8vSgHh5dx62dFZKB763UKFPTm+l8/APzys2yvohX/nbjbALdv43XO/nQVoSjjpBYrfTni4jG5OvjFkPCqJAFP6kNhsrqGOFnc7BSDlAvSrnutBgLwrnUvDFn4Lnbdou3Vxx3m9KUflIpitWBxqHCYg7c4iAl7rVsn9b7iZm8HRa/GxG8JiXIZ7iJZ+zlBunEM2nQRgGN0kkjWwawfZFynjVqkcGVM02fxavo4jr9Z0AkMcGs+EzYdJmEHTxv9NzE4QHY9gA==; csrf_token=0462579b6db64a53558dd357d5d0f718c775ca6ca9ee0a51f671bfc170779510819d3335dabf0700e10fd6a8a79b8a5ccff05683e8c47095049a248ab522e86a; page_uid=f332993b-0836-4b3c-86a2-821516a4cc7b',
-                       }
+                        'authority': 'map.naver.com',
+                        'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"',
+                        'pragma': 'no-cache',
+                        'accept-language': 'ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4',
+                        'sec-ch-ua-mobile': '?0',
+                        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
+                        'content-type': 'application/json',
+                        'accept': 'application/json, text/plain, */*',
+                        'expires': 'Sat, 01 Jan 2000 00:00:00 GMT',
+                        'cache-control': 'no-cache',
+                        'sec-ch-ua-platform': '"Windows"',
+                        'sec-fetch-site': 'same-origin',
+                        'sec-fetch-mode': 'cors',
+                        'sec-fetch-dest': 'empty',
+                        'referer': 'https://map.naver.com/',
+                        'cookie': 'NNB=P52ZOJCX3GZGC; nx_ssl=2; nid_inf=19877329; NID_AUT=oQd6mkpDrJs1vkdeycVkS5391jnY0PYll0aYYoBV3gkIN7++K31ixOSTvYkXlAHZ; NID_JKL=evk+1JoX3dwNkQ6VMKWC5Pq3IhlOSyzWRtMt5hjHSYI=; csrf_token=c1dc8dbab511448d72e52b6dfcdb3e700a687ac213fb8fbcbbab741cf8a6b7719939ee141a8706275fea0df0bb8e6bef007849179b7307d26f657c9bc1d7bb1b; page_uid=hO71xdp0J1sssCPoGSRssssssKK-085086; BMR=s=1641402554641&r=https%3A%2F%2Fm.blog.naver.com%2FPostView.naver%3FisHttpsRedirect%3Dtrue%26blogId%3Dlovejhs96%26logNo%3D220447981320&r2=https%3A%2F%2Fwww.google.com%2F; NID_SES=AAABp1aqxXd0QM8Sdl55MC/eNDbEPmUzJtLrlhoKkhjn26qBiMOmFGtth2XNR3llkA2YeXgWw2c38QXzsFtW9IhQDgX3sx3827HACACDO4F3wTMYxafrMwvapARhcErPtki/Hje/YZKtv/UGK44s2cJ7qjdIcTo2MGT35EQaCbUpmUj42FzkiTn9FblJ/3AEx0HLXA/qd6AOLQtxFMUHH00ewt5cNh9wPtPz/3q4LUzyNXsnz46VmkF6R5kG+mmbu4fTl7zBHhjMmvDyuFgu2pwlRQJGuRy6fZgfSJgRKYy+G7G9Rp6m/gOIoB9iyxyOPbwhCG7cIhcA6uUEx5YpZTWCTiDHfgjiIIaNL5jimJxA+ezAwfoSHyvr8jn+0EBOwBw4yg7fkpv/RMjxmabyTgjAnGNYU6+Val0sEZls0UuBPdcmWy+jBuWh1l1Qus5Nd7zZnNxiuK5boH94jPLhvJhYsQxIEQidd+AkJCRbWcFpgJViyiwwwCk12QEjpVZ3tXAjYXL3HtdH/ED1RTQvKRDsQR5yHOlJYZIWlBtBxg9We3dpC8r01FyekFBCNP0X9Jcunw==; page_uid=1e253746-0306-4331-be4d-9684e5aeb471',
+}
 
             params = (
                         ('query', new_name),

@@ -86,8 +86,8 @@ def action_naver_review_modeling(tokenized, save_dir='./results/temp'):
             pass
 
     fname = 'my_doc2vec_model'
-    model.save('./results/' + fname)
-    model = Doc2Vec.load('./results/' + fname)  # you can continue training with the loaded model!
+    model.save('./results/temp/' + fname)
+    model = Doc2Vec.load('./results/temp/' + fname)  # you can continue training with the loaded model!
 
     return model
 
