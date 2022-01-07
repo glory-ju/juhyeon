@@ -9,7 +9,8 @@
   * [KoBERT](#kobert)
     * [Using with PyTorch](#using-with-pytorch)
     * [Tokenizer](#tokenizer)
-  * [Demo](#simulation-video)
+* [Demo](#simulation-video)
+  * [Web](#web-function-implementationvia-django)
 
 ---
 
@@ -27,12 +28,12 @@
 
 * 학습셋
 
-| 데이터    | 문장   |
-|--------|------|
-| 네이버    | 220M |
-| 구글     | 140M |
-| 식신     | 8M   |
-| 다이닝 코드 | 3M   |
+| 포털     | 데이터   |
+|--------|-------|
+| 네이버    | 2.2M  |
+| 구글     | 1.4M  |
+| 식신     | 0.08M |
+| 다이닝 코드 | 0.03M |
 
 
 * 학습 환경
@@ -40,11 +41,11 @@
 
 ### Requirements
 
-* [requirements_dec.txt](https://github.com/glory-ju/juhyeon/blob/main/aiunited_project/requirements_dec.txt)
+* [requirements_dec.txt](https://github.com/glory-ju/juhyeon/blob/main/aiunited_project/requirements_dec.txt) - _main.py_
   * 버전 충돌 때문에 dec와 kobert를 한 번에 돌릴 수 없음.
-  * 가상환경 두 개로 나누어서 DEC / KOBERT 진행.
+  * ###가상환경 두 개로 나누어서 DEC / KOBERT 진행.
   * requirements_dec.text : crawling ~ preprocessing ~ embedding ~ modeling ~ DEC
-* [requirements_kobert.txt](https://github.com/glory-ju/juhyeon/blob/main/aiunited_project/requirements_kobert.txt)
+* [requirements_kobert.txt](https://github.com/glory-ju/juhyeon/blob/main/aiunited_project/requirements_kobert.txt) - _main_bert.py_
 
 ### How to install
 
@@ -61,7 +62,7 @@
   ```
 
 ### Virtual Environment and Requirements Detail
-* requirements_dec ( python version 3.8 )
+* requirements_dec ( 1st venv : python version 3.8 )
   ```python
   >>> pip install 
   
@@ -71,7 +72,7 @@
   
   ```
   
-* requirements_kobert ( python version 3.6 )
+* requirements_kobert ( 2nd venv : python version 3.6 )
   ```python
   >>> pip install 
   
@@ -85,7 +86,7 @@
 
 `from crawler.store_crawler import Crawler` -- line 41
 ```python
-for i in tqdm(range(1200,1220)):
+for i in tqdm(range(10)):
 sample 추출을 위해 임의 설정.
 len(df)나 원하는 범위 (0, 19163 사이값) 설정 가능.
 ```
@@ -108,11 +109,11 @@ len(df)나 원하는 범위 (0, 19163 사이값) 설정 가능.
 
 `dec.py`
 ```python
-data = dec(df=tokenize_review, n_clusters=5, model_name = 'my_doc2vec_model', size=256)
+data = dec(df=tokenize_review, n_clusters=5, model_name = 'my_doc2vec_model', size=100)
 ```
 * n_cluster : 평점 1~5점에 맞는 dec clustering 클러스터 값을 5개로 설정
 * model_name : 사전 학습된 doc2vec model 사용.
-* size : batch_size = 256
+* size : operands broadcasting : 100
 
 ---
 
@@ -165,3 +166,7 @@ tensor([[-0.2461,  0.2428,  0.2590,  ..., -0.4861, -0.0731,  0.0756],
 # Simulation Video
 
 https://drive.google.com/file/d/1vC53wQ2cWlLHMOeFc2g805omJ3yiMQVF/view?usp=sharing
+
+# Web Function Implementation(via Django)
+
+https://github.com/boredjuju/store_recommendation

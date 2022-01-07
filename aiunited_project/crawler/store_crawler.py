@@ -38,7 +38,7 @@ class Crawler:
             json.load를 계속 호출하다 보면 api 사용을 막아버림.
             time sleep을 랜덤으로 설정해주면 오래걸리지만 막히지 않음.
         '''
-        for i in tqdm(range(1200,1220)):
+        for i in tqdm(range(10)):
             time.sleep(np.random.randint(0, 3))
 
             '''
