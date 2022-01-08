@@ -8,6 +8,8 @@ from embedding.embedding_doc2vec import action_naver_review_tokenizing, \
 from dec.DEC.DEC.DEC import dec
 import pandas as pd
 from konlpy.tag import Mecab
+import socket
+socket.getaddrinfo('localhost', 8080)
 
 if __name__ == '__main__':
 

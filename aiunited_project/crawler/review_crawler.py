@@ -79,7 +79,7 @@ def action_naver_review_crawler(df):
                                                   int(date_slicing[2]))
                     else:
                         date_slicing = date[:-2].split('.')
-                        date_time = datetime.date(int('2021'), int(date_slicing[0]), int(date_slicing[1]))
+                        date_time = datetime.date(int('2022'), int(date_slicing[0]), int(date_slicing[1]))
 
                     score = i['rating']
                     # 후에 전처리 하기 수월하고 저장된 csv에서 확인을 쉽게 하기 위해 미리 전처리(줄바꿈, 마침표 제거)
