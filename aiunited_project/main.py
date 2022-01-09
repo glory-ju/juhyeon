@@ -52,32 +52,3 @@ if __name__ == '__main__':
 
     # kobert 모델 학습시킬 데이터 사전 추출
     data = data[['score', 'cluster', 'review']]
-
-    # 각 클러스터 당 데이터 세분화 시킨 dict 데이터 구하기
-    # data_dict = get_dict_for_kobert_data(data)
-    #
-    # final_cluster_data = {}
-    #
-    # cluster_list = [0, 1, 2, 3, 4]
-    #
-    # # 중복되지 않은 클러스터들은 final_cluster_data에 할당
-    # cluster_list, final_cluster_data, cluster_max = get_score_at_cluster(data_dict, cluster_list, final_cluster_data)
-    #
-    # # 남은 클러스터에 자체 알고리즘으로 데이터 할당
-    # final_cluster_data = get_final_score_at_cluster(data_dict, cluster_list, final_cluster_data)
-    #
-    # # 해당 클러스터, 점수 별 데이터 길이 최솟값 구하기
-    # data_length = [
-    #     len(data[(data['cluster'] == cluster) & (data['score'] == final_cluster_data.get(cluster))])
-    #     for cluster in final_cluster_data.keys()
-    # ]
-    #
-    # slice_value = min(data_length)
-    #
-    # # 최솟값 기준으로 판다스 데이터프레임에 각 클러스터별 데이터 입력
-    # df_list = [
-    #     data[(data['cluster'] == cluster) & (data['score'] == final_cluster_data.get(cluster))][:slice_value]
-    #     for cluster in final_cluster_data.keys()
-    # ]
-    # # 위의 데이터프레임 합쳐서 kobert 학습용 데이터 프레임 생성
-    # final_df = pd.concat(df_list)
