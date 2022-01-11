@@ -31,7 +31,7 @@ if __name__ == '__main__':
     naver_review.to_csv(name, index=False, encoding='UTF-8')
 
     # review preprocessing
-    df = pd.read_csv('naver_review.csv')
+    df = pd.read_csv(name)
     preprocess_review = action_naver_review_preprocessing(df)
     preprocess_review.to_csv('preprocessed_review.csv', index=False, encoding='UTF-8')
 
