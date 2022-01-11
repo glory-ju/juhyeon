@@ -204,7 +204,7 @@ class DEC(object):
             update_interval=140, save_dir='./results/temp'):
 
         print('Update interval', update_interval)
-        save_interval = (x.shape[0] / batch_size) * 5  # 5 epochs
+        save_interval = int(x.shape[0] / batch_size) * 5  # 5 epochs
         print('Save interval', save_interval)
 
         # Step 1: initialize cluster centers using k-means
@@ -313,7 +313,7 @@ def dec(df, n_clusters, **param):
         pretrain_optimizer = SGD(lr=1, momentum=0.9)
     elif args.dataset == 'doc2vec':
         update_interval = 30
-        pretrain_epochs = 30
+        pretrain_epochs = 50
         init = VarianceScaling(scale=1. / 3., mode='fan_in',
                                distribution='uniform')  # [-limit, limit], limit=sqrt(1./fan_in)
         pretrain_optimizer = SGD(lr=1, momentum=0.9)

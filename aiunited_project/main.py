@@ -31,12 +31,14 @@ if __name__ == '__main__':
     naver_review.to_csv(name, index=False, encoding='UTF-8')
 
     # review preprocessing
-    df = pd.read_csv(name)
+    df = pd.read_csv('naver_review.csv')
     preprocess_review = action_naver_review_preprocessing(df)
+    preprocess_review.to_csv('preprocessed_review.csv', index=False, encoding='UTF-8')
 
     # review tokenizing
     mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
     tokenize_review = action_naver_review_tokenizing(preprocess_review, mecab)
+    tokenize_review.to_csv('tokenized_review.csv', index=False, encoding='UTF-8')
 
     # preparing embedding
     tokenize_review.dropna(inplace=True)
