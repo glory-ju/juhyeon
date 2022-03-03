@@ -10,7 +10,7 @@ days = 0
 page = 1
 data_frame = []
 
-while days == 0:
+while days <= 1:
     date = datetime.datetime.now()
     yesterday = date - datetime.timedelta(days=days)
     date = yesterday.strftime('%Y%m%d')
@@ -63,6 +63,7 @@ while days == 0:
             data_frame.append(elements)
         else:
             days += 1
+            page = 0
             data_frame.pop()
             break
     page += 1
