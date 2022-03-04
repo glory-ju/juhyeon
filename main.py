@@ -1,29 +1,3 @@
-# import requests
-# from bs4 import BeautifulSoup
-#
-# url = ''
-#
-# header = {
-#
-# }
-# resp = requests.get(url, headers=header)
-#
-# print(resp.status_code)
-#
-# resp.content <- 바이너리
-# resp.text <- 글자
-#
-# soup = BeautifulSoup(resp.content, 'lxml')
-#
-# tenp = soup.find('div')
-#
-# temp = soup.find('div', attrs={'class': 'content'})
-#
-# list = soup.find_all('p')
-#
-# soup.select('div>p>')
-#
-
 import requests
 from bs4 import BeautifulSoup
 # from practice.crawling import crawler
@@ -36,9 +10,7 @@ days = 0
 page = 1
 data_frame = []
 
-while days == 0:
-    if days == 1:
-        break
+while days <= 10:
     date = datetime.datetime.now()
     yesterday = date - datetime.timedelta(days=days)
     date = yesterday.strftime('%Y%m%d')
@@ -84,15 +56,16 @@ while days == 0:
 
         content = raw_content.text.replace('    ', '').strip()
 
-        elements = [date, page, sid1, sid2, oid, aid, time, media, writer, title, content, url_list[idx]]
-
-        if elements not in data_frame:
+        elements = (date, sid1, sid2, oid, aid, time, media, writer, title, content, url_list[idx])
+        print(elements)
+        # if elements not in data_frame:
+        if len(data_frame) == len(set(data_frame)):
             data_frame.append(elements)
         else:
-            days = 1
+            days += 1
+            page = 0
+            data_frame.pop()
             break
+    df = pd.DataFrame(data_frame, columns=['today', 'sid1', 'sid2', 'oid', 'aid', 'time', 'media', 'writer', 'title', 'content', 'url'])
+    df.to_csv('test1.csv', index=False, encoding='utf-8')
     page += 1
-    print(data_frame)
-
-df = pd.DataFrame(data_frame, columns=['today', 'page', 'sid1', 'sid2', 'oid', 'aid', 'time', 'media', 'writer', 'title', 'content', 'url'])
-df.to_csv('test1.csv', index=False, encoding='utf-8')
